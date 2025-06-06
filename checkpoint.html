@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Checkpoint</title>
+  <style>
+    body { font-family: Arial; background: #111; color: white; text-align: center; padding-top: 50px; }
+    .container { background: #1a1a1a; padding: 30px; border-radius: 10px; width: 300px; margin: auto; }
+    input, button { padding: 10px; width: 90%; margin: 10px 0; border-radius: 5px; border: none; }
+    input { background: #333; color: white; }
+    button { background: #2196f3; color: white; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Generated Key</h2>
+    <input type="text" id="key" placeholder="Enter Key">
+    <button onclick="checkKey()">Verify Key</button>
+    <p id="status"></p>
+  </div>
+  <script>
+    const validKeys = ["FAKE-KEY-123", "TEST-KEY-456", "MOCK-KEY-789"];
+
+    function checkKey() {
+      const key = document.getElementById("key").value;
+      if (validKeys.includes(key)) {
+        window.location.href = "success.html";
+      } else {
+        document.getElementById("status").textContent = "Invalid key. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>

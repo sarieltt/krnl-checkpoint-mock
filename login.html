@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body { font-family: Arial; background: #111; color: white; text-align: center; padding-top: 50px; }
+    .container { background: #1a1a1a; padding: 30px; border-radius: 10px; width: 300px; margin: auto; }
+    input, button { padding: 10px; width: 90%; margin: 10px 0; border-radius: 5px; border: none; }
+    input { background: #333; color: white; }
+    button { background: #4caf50; color: white; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="status"></p>
+  </div>
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "admin" && password === "yoshimura") {
+        localStorage.setItem("loggedIn", true);
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("status").textContent = "Invalid credentials.";
+      }
+    }
+  </script>
+</body>
+</html>
