@@ -22,7 +22,7 @@
       document.getElementById("loader").style.display = 'block';
       const key = document.getElementById("key").value;
       const hwid = document.getElementById("hwid").value;
-      const res = await fetch(`https://your-repl-name.your-username.repl.co/verify?key=ABC123&hwid=test-hardware-id}`);
+      const res = await fetch(`https://key-auth-sarieltt.repl.co}`);
       const data = await res.json();
       document.getElementById("loader").style.display = 'none';
       document.getElementById("result").innerText = data.valid ? "✅ Key Valid" : "❌ Invalid Key or HWID";
