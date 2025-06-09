@@ -1,36 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Checkpoint Loader</title>
   <style>
-    body { font-family: Arial; background: #111; color: white; text-align: center; padding-top: 50px; }
-    .container { background: #1a1a1a; padding: 30px; border-radius: 10px; width: 300px; margin: auto; }
-    input, button { padding: 10px; width: 90%; margin: 10px 0; border-radius: 5px; border: none; }
-    input { background: #333; color: white; }
-    button { background: #4caf50; color: white; cursor: pointer; }
+    body { font-family: monospace; background: #1e1e1e; color: #0f0; text-align: center; padding-top: 100px; }
+    input, button { background: #333; color: #0f0; border: 1px solid #0f0; padding: 10px; border-radius: 5px; margin-top: 10px; }
+    #loader { width: 50px; height: 50px; border: 5px solid #0f0; border-top: 5px solid #111; border-radius: 50%; margin: 20px auto; animation: spin 1s linear infinite; }
+    @keyframes spin { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="status"></p>
-  </div>
-  <script>
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+  <h1>🔐 Checkpoint Verification</h1>
+  <div id="loader" style="display:none;"></div>
+  <input type="text" id="key" placeholder="Enter key"><br>
+  <input type="text" id="hwid" placeholder="Enter HWID"><br>
+  <button onclick="verify()">Verify Key</button>
+  <div id="result"></div>
 
-      if (username === "admin" && password === "yoshimura") {
-        localStorage.setItem("loggedIn", true);
-        window.location.href = "index.html";
-      } else {
-        document.getElementById("status").textContent = "Invalid credentials.";
-      }
+  <script>
+    async function verify() {
+      document.getElementById("loader").style.display = 'block';
+      const key = document.getElementById("key").value;
+      const hwid = document.getElementById("hwid").value;
+      const res = await fetch(`https://your-repl-name.your-username.repl.co/verify?key=ABC123&hwid=test-hardware-id}`);
+      const data = await res.json();
+      document.getElementById("loader").style.display = 'none';
+      document.getElementById("result").innerText = data.valid ? "✅ Key Valid" : "❌ Invalid Key or HWID";
     }
   </script>
 </body>
