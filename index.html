@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
       document.getElementById("loader").style.display = 'block';
       const key = document.getElementById("key").value;
       const hwid = document.getElementById("hwid").value;
-      const res = await fetch(`https://key-auth-sarieltt.repl.co}`);
+      const res = await fetch(`https://your-backend-url/verify?key=${key}&hwid=${hwid}`);
       const data = await res.json();
       document.getElementById("loader").style.display = 'none';
       document.getElementById("result").innerText = data.valid ? "✅ Key Valid" : "❌ Invalid Key or HWID";
